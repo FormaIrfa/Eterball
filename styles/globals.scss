@@ -1,0 +1,132 @@
+@use './variables' as *;
+
+body {
+  background: $primary-background;
+  color: #ededed;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  max-width: 100%;
+}
+h2 {
+  font-family: $Title;
+  font-size: 3rem;
+  letter-spacing: 8px;
+}
+button#jouer {
+  background-color: $button-color;
+  color: #ededed;
+  padding: 8px 30px;
+  border-radius: 5px;
+  border: none;
+  font-family: $Text;
+  font-weight: bold;
+  &:hover {
+    background: $hover-button;
+  }
+}
+
+header {
+  position: fixed;
+  z-index: 1;
+  top: 10;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid $secondary-background;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  padding-bottom: 10px;
+  margin: 0px 10px;
+  border-radius: 5px;
+  width: 98.5%;
+}
+
+nav#hors-connexion {
+  display: flex;
+  align-items: center;
+  gap: 250px;
+
+  #logo-nav {
+    position: absolute;
+    top: 0;
+    left: 70;
+    z-index: 10;
+  }
+  div#menus {
+    ul#menu {
+      position: absolute;
+      top: 0;
+      left: 250;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 100px;
+      width: 45%;
+      font-size: 1.3rem;
+      font-family: $Title;
+      padding: 10px 0px 0px 0px;
+      margin: 0;
+    }
+    ul#lien-jeu {
+      list-style: none;
+    }
+    li {
+      list-style: none;
+    }
+    a {
+      text-decoration: none;
+      color: $text-color;
+    }
+  }
+
+  div#classes {
+    img#ailier {
+      height: 300px;
+    }
+  }
+
+  div#connexion {
+    width: 20vw;
+    position: absolute;
+    right: 30;
+
+    div#langue {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    ul#connecter {
+      list-style: none;
+      margin: 0;
+      padding: 10px 0px 0px 0px;
+      display: flex;
+      gap: 30px;
+      justify-content: flex-end;
+    }
+  }
+  li#planete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  li#compte {
+    img {
+      padding-top: 5px;
+      height: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+#layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; // prend toute la hauteur de l'écran
+}
+
+#content {
+  flex: 1; // pousse le footer en bas quand le contenu est petit
+}

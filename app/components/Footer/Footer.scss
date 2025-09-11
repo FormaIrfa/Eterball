@@ -1,0 +1,123 @@
+@use '../../../styles/variables' as *;
+
+.footer {
+    background: #111;
+    color: #ededed;
+    padding: 3rem 2rem;
+    font-size: 0.9rem;
+    
+  
+    a {
+      color: #909090;
+      text-decoration: none;
+      transition: color 0.2s;
+      &:hover {
+        color: #ededed;
+      }
+    }
+  
+    h3 {
+      color: #ededed;
+      font-family: "Poppins", sans-serif;
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      border-bottom: 1px solid #444;
+      padding-bottom: 0.3rem;
+    }
+  
+    ul {
+      list-style: none;
+      padding: 0;
+      li {
+          
+        margin: 0.3rem 0;
+      }
+    }
+  
+    &__top {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+  
+    &__cta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+  
+      .download-btn {
+        background: $button-color;
+        color: $text-color;
+        font-family: $Text;
+        padding: 0.6rem 1.2rem;
+        border-radius: 5px;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        transition: background 0.2s;
+        &:hover {
+          background: $hover-button;
+        }
+      }
+  
+      .support-text {
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+      }
+  
+      .socials {
+        display: flex;
+        gap: 0.8rem;
+        font-size: 1.4rem;
+  
+        svg {
+          cursor: pointer;
+          transition: color 0.2s;
+          &:hover {
+            color: $text-color;
+          }
+        }
+      }
+    }
+  
+    &__bottom {
+      border-top: 1px solid #333;
+      padding-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+  
+      @media (min-width: 768px) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+  
+      .footer__legal {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+  
+        .logo {
+          height: 40px;
+        }
+  
+        p {
+          font-size: 0.75rem;
+          color: #888;
+          max-width: 600px;
+          text-align: center;
+        }
+      }
+  
+      .footer__pegi {
+        display: flex;
+        gap: 0.8rem;
+  
+        img {
+          height: 40px;
+        }
+      }
+    }
+  }
+  
