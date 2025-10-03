@@ -1,0 +1,266 @@
+@use './styles/variables' as *;
+
+#intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  position: relative;
+  width: 100%;
+  height: 550px;
+  max-width: 1450px;
+  margin: 100px auto 30px auto; // centrage + marges
+  border-radius: 12px;
+  overflow: hidden;
+
+  // Background image
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url('/assets/image_fictif_jeu.png') center/cover no-repeat;
+
+  // Overlay (sous le contenu)
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0; // ✅ reste sous les enfants
+  }
+
+  // Zone de description
+  #description {
+    position: relative;
+    max-width: 800px;
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    width: 650px;
+    font-size: 1.3rem;
+
+    h1 {
+      font-family: $Title;
+      font-size: 3rem;
+    }
+
+    #catchphrase {
+      text-align: center;
+      font-family: $Text;
+      margin-bottom: 40px;
+    }
+  }
+
+  button#download {
+    position: relative;
+    z-index: 1; // pas strictement nécessaire, mais sécurisant
+    max-width: 350px;
+    text-align: center;
+    color: $text-color;
+    background: $button-color;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-family: $Text;
+    font-weight: bold;
+    font-size: 1.5rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: $hover-button;
+    }
+  }
+}
+
+#actus-news {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  min-height: fit-content;
+  max-height: 100%;
+  width: 100%;
+  height: 550px auto;
+  max-width: 1450px;
+  margin: 30px auto 30px auto; // centrage + marges
+  border: 1px $primary-background solid;
+  border-radius: 12px;
+
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url('/assets/DragonFlame_Stadium.png') center/cover no-repeat;
+
+  #actus {
+    display: flex;
+    justify-content: space-around;
+    gap: 250px;
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  #img-actus {
+    height: auto;
+    max-width: 100%;
+    width: 600px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 1 250px;
+
+    img {
+      border-radius: 10px;
+      background-size: cover;
+      margin: 8px 8px 8px 8px;
+    }
+
+    #img-dragons {
+      margin-right: 10px;
+    }
+    #img-teamDepart {
+      margin-right: 10px;
+    }
+  }
+
+  #titre-event {
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; // centre horizontalement logo + bouton
+    justify-content: center;
+    text-align: center;
+
+    h2 {
+      margin: 0;
+    }
+    #img-event {
+      margin: 5px;
+      padding-top: 15px;
+    }
+    button#event-btn {
+      z-index: 1; // pas strictement nécessaire, mais sécurisant
+      max-width: 350px;
+      text-align: center;
+      color: $text-color;
+      background: $button-color;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-family: $Text;
+      font-weight: bold;
+      font-size: 1.5rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+
+      &:hover {
+        background: $hover-button;
+      }
+    }
+  }
+}
+
+#img-presentation {
+  width: 100%;
+  max-width: 1450px;
+  margin: 30px auto;
+  border: 1px solid #333;
+  border-radius: 12px;
+
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url('/assets/Fond_DL.png') center/cover no-repeat;
+
+  #img-jeu {
+    display: flex;
+    flex-wrap: wrap; /* responsive auto */
+    gap: 10px;
+    padding: 30px 0px;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    flex: 1 1 250px; /* largeur mini 250px */
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    padding: 40px;
+  }
+
+  #img-jeu img {
+    max-width: 100%;
+    flex: 1;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+  }
+}
+
+#previsualisation-personnages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: fit-content;
+  max-height: 100%;
+  border-radius: 10px;
+  position: relative;
+  width: 100%;
+  height: 550px;
+  max-width: 1450px;
+  margin: 30px auto 30px auto; // centrage + marges
+
+  #background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 550px;
+    max-height: 100%;
+    width: 100%;
+    filter: blur(8px);
+    background: url('/Team_depart.png') center/cover no-repeat;
+    overflow: hidden;
+    z-index: -1;
+  }
+  #classes {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+  }
+  #personnage {
+    z-index: 1;
+  }
+  #intro-personnages {
+    width: 600px;
+    text-align: center;
+    #description {
+      text-align: center;
+      font-family: $Text;
+      font-size: 1.3rem;
+    }
+
+    button#pageJoueurs {
+      position: relative;
+      z-index: 1; // pas strictement nécessaire, mais sécurisant
+      max-width: 350px;
+      text-align: center;
+      color: $text-color;
+      background: $button-color;
+      padding: 10px 10px;
+      border-radius: 6px;
+      font-family: $Text;
+      font-weight: bold;
+      font-size: 1.5rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+
+      &:hover {
+        background: $hover-button;
+      }
+    }
+  }
+}

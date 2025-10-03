@@ -1,0 +1,102 @@
+'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import './login.scss';
+import { login } from '../store/auth/authSlice';
+
+const Login = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!username || !password) {
+      alert('Merci de remplir tous les champs!');
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:5000/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (!response.ok) {
+        const err = await response.json();
+        alert(err.error || 'Erreur lors de la connexion');
+        return;
+      }
+
+      const data = await response.json();
+      console.log('Connexion réussie :', data);
+
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+      }
+
+      // 👉 Mapping vers ton slice
+      dispatch(
+        login({
+          token: data.token,
+          user: {
+            id: data.user.id,
+            name: data.user.username, // tu peux aussi concat username + surname
+            avatar: '/assets/Coupe_Casquette.png', // par défaut pour l'instant
+            eter: data.user.eter ?? 0, // si backend ne renvoie pas encore, mets 0
+          },
+        })
+      );
+
+      router.push('/');
+    } catch (err) {
+      console.error(err);
+      alert('Erreur serveur');
+    }
+  };
+
+  return (
+    <div id="loginPage">
+      <form onSubmit={handleLogin}>
+        <h2>Connexion</h2>
+
+        <label>
+          <span>
+            Nom d&apos;utilisateur <span id="star">*</span> :{' '}
+          </span>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </label>
+
+        <label>
+          <span>
+            Mot de passe <span id="star">*</span> :{' '}
+          </span>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
+
+        <button type="submit">Se connecter</button>
+
+        <p>
+          Pas encore de compte ? <Link href="/signup">S&apos;inscrire</Link>
+        </p>
+      </form>
+    </div>
+  );
+};
+
+export default Login;
