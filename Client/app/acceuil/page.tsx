@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import './accueil.scss';
 const Acceuil = () => {
@@ -7,7 +9,7 @@ const Acceuil = () => {
         <div id="description">
           <h1>Fais vibrer le terrain dans Eterball</h1>
           <p id="catchphrase">
-            Plonge dans un MMORPG unique ou stratégie et esprit d'équipe
+            Plonge dans un MMORPG unique ou stratégie et esprit d&apos;équipe
             règnent. Affronte des équipes redoutables dans des stades épiques et
             mène ta team vers la gloire. Sauras-tu prouver ta valeur sur le
             terrain ?

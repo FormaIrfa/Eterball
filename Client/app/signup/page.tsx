@@ -1,9 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import './signup.scss';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/auth';
 
 export default function SignUp() {
   const [username, setUsername] = useState('');
@@ -15,7 +17,7 @@ export default function SignUp() {
   const [month, setMonth] = useState('');
   const [year, setYear] = useState('');
   const router = useRouter();
-
+  const isConnected = useSelector((store: RootState) => store.auth.isConnected);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -72,6 +74,8 @@ export default function SignUp() {
       alert('Erreur serveur');
     }
   };
+
+  if (isConnected) redirect('/');
 
   return (
     <div id="signUpPage">

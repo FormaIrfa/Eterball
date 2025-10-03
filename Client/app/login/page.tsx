@@ -1,18 +1,19 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './login.scss';
 import { login } from '../store/auth/authSlice';
+import { RootState } from '../store/auth';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
   const dispatch = useDispatch();
-
+  const isConnected = useSelector((store: RootState) => store.auth.isConnected);
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -61,6 +62,8 @@ const Login = () => {
       alert('Erreur serveur');
     }
   };
+
+  if (isConnected) redirect('/');
 
   return (
     <div id="loginPage">

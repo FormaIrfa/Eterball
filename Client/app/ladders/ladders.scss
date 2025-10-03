@@ -1,0 +1,70 @@
+@use './styles/variables' as *;
+
+#ladders {
+  display: flex;
+  li {
+    font-family: $Text;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 420px;
+  }
+
+  .info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  #rank {
+    display: inline-block;
+    width: 15px; /* largeur fixe pour aligner tous les chiffres */
+    text-align: center;
+  }
+
+  #joueur1,
+  #joueur2 {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  }
+
+  #general {
+    text-align: center;
+    background-color: $secondary-background;
+    width: 450px;
+    height: 800px;
+    margin: 120px auto 30px auto;
+  }
+  #classement {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #players {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-left: 20px;
+    list-style: none;
+  }
+
+  #stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+  }
+  #statPlayer {
+    padding-right: 10px;
+  }
+  hr {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  #buttonClassement {
+    text-align: center;
+    #voir-classement {
+      padding: 10px 20px;
+      font-size: 1.3rem;
+    }
+  }
+}

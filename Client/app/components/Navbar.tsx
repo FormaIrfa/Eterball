@@ -38,7 +38,7 @@ const Navbar: FC = () => {
         <div id="menus">
           <ul id="menu">
             <li className="dropdown">
-              <p>Jeu</p>
+              <p>Jeu </p>
               <ul className="dropdown-menu">
                 <li>
                   <Link href="/ladders">
