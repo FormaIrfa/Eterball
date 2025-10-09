@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import './ladders.scss';
+import Link from 'next/link';
 
 const Ladders = () => {
   return (
@@ -11,7 +12,7 @@ const Ladders = () => {
           <h2>Ladder général</h2>
           <Image
             id="ladder-general"
-            src="/Ladder_Gen.png"
+            src="/Miniature_Ladder_gen.png"
             alt="General ladder"
             width={450}
             height={300}
@@ -20,7 +21,24 @@ const Ladders = () => {
             <ol id="players">
               <li id="joueur1">
                 <div className="info">
-                  <span id="rank">1</span>&nbsp;
+                  <span className="rank">1</span>&nbsp;
+                  <Image
+                    id="personnage"
+                    src="/Miniature_Milieu.png"
+                    alt="first-player"
+                    width={50}
+                    height={50}
+                  />
+                  &nbsp;Nagaa
+                </div>
+                <div>
+                  <p id="statPlayer">100 GEN</p>
+                </div>
+              </li>
+
+              <li id="joueur2">
+                <div className="info">
+                  <span className="rank">2</span>&nbsp;
                   <Image
                     id="personnage"
                     src="/Miniature_Aillier.png"
@@ -31,32 +49,15 @@ const Ladders = () => {
                   &nbsp;Poweur-Aizen
                 </div>
                 <div>
-                  <p id="statPlayer">9245</p>
-                </div>
-              </li>
-
-              <li id="joueur2">
-                <div className="info">
-                  <span id="rank">2</span>&nbsp;
-                  <Image
-                    id="personnage"
-                    src="/Miniature_Aillier.png"
-                    alt="first-player"
-                    width={50}
-                    height={50}
-                  />
-                  &nbsp;Nagaa
-                </div>
-                <div>
-                  <p id="statPlayer">8875</p>
+                  <p id="statPlayer">99 GEN</p>
                 </div>
               </li>
               <li id="joueur3">
                 <div className="info">
-                  <span id="rank">3</span>&nbsp;
+                  <span className="rank">3</span>&nbsp;
                   <Image
                     id="personnage"
-                    src="/Miniature_Aillier.png"
+                    src="/Miniature_AT.png"
                     alt="first-player"
                     width={50}
                     height={50}
@@ -64,13 +65,15 @@ const Ladders = () => {
                   &nbsp;Luigy
                 </div>
                 <div>
-                  <p id="statPlayer">8600</p>
+                  <p id="statPlayer">98 GEN</p>
                 </div>
               </li>
             </ol>
           </div>
           <div id="buttonClassement">
-            <button id="voir-classement">Voir le classement complet</button>
+            <Link href="/ladders/general">
+              <button id="voir-classement">Voir le classement complet</button>
+            </Link>
           </div>
         </article>
 
@@ -87,40 +90,40 @@ const Ladders = () => {
             <ol id="players">
               <li id="joueur1">
                 <div className="info">
-                  <span id="rank">1</span>&nbsp;
+                  <span className="rank">1</span>&nbsp;
                   <Image
                     id="personnage"
-                    src="/Miniature_Aillier.png"
+                    src="/Miniature_AT.png"
                     alt="first-player"
                     width={50}
                     height={50}
                   />
-                  &nbsp;Poweur-Aizen
+                  &nbsp;MG|E
                 </div>
                 <div>
-                  <p id="statPlayer">9245</p>
+                  <p id="statPlayer">50 v</p>
                 </div>
               </li>
 
               <li id="joueur2">
                 <div className="info">
-                  <span id="rank">2</span>&nbsp;
+                  <span className="rank">2</span>&nbsp;
                   <Image
                     id="personnage"
-                    src="/Miniature_Aillier.png"
+                    src="/Miniature_Milieu.png"
                     alt="first-player"
                     width={50}
                     height={50}
                   />
-                  &nbsp;Nagaa
+                  &nbsp;NANKATSU
                 </div>
                 <div>
-                  <p id="statPlayer">8875</p>
+                  <p id="statPlayer">49 v</p>
                 </div>
               </li>
               <li id="joueur3">
                 <div className="info">
-                  <span id="rank">3</span>&nbsp;
+                  <span className="rank">3</span>&nbsp;
                   <Image
                     id="personnage"
                     src="/Miniature_Aillier.png"
@@ -128,10 +131,10 @@ const Ladders = () => {
                     width={50}
                     height={50}
                   />
-                  &nbsp;Luigy
+                  &nbsp;MAGMA
                 </div>
                 <div>
-                  <p id="statPlayer">8600</p>
+                  <p id="statPlayer">48 v</p>
                 </div>
               </li>
             </ol>
@@ -154,7 +157,7 @@ const Ladders = () => {
             <ol id="players">
               <li id="joueur1">
                 <div className="info">
-                  <span id="rank">1</span>&nbsp;
+                  <span className="rank">1</span>&nbsp;
                   <Image
                     id="personnage"
                     src="/Miniature_Aillier.png"
@@ -171,15 +174,15 @@ const Ladders = () => {
 
               <li id="joueur2">
                 <div className="info">
-                  <span id="rank">2</span>&nbsp;
+                  <span className="rank">2</span>&nbsp;
                   <Image
                     id="personnage"
-                    src="/Miniature_Aillier.png"
+                    src="/Miniature_AT.png"
                     alt="first-player"
                     width={50}
                     height={50}
                   />
-                  &nbsp;Nagaa
+                  &nbsp;Luigy
                 </div>
                 <div>
                   <p id="statPlayer">8875</p>
@@ -187,15 +190,15 @@ const Ladders = () => {
               </li>
               <li id="joueur3">
                 <div className="info">
-                  <span id="rank">3</span>&nbsp;
+                  <span className="rank">3</span>&nbsp;
                   <Image
                     id="personnage"
-                    src="/Miniature_Aillier.png"
+                    src="/Miniature_Milieu.png"
                     alt="first-player"
                     width={50}
                     height={50}
                   />
-                  &nbsp;Luigy
+                  &nbsp;Nagaa
                 </div>
                 <div>
                   <p id="statPlayer">8600</p>

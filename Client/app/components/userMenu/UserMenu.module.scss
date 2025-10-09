@@ -21,7 +21,6 @@
   background-color: rgba(21, 21, 21, 0.9);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  
 }
 
 .header {
@@ -86,6 +85,7 @@
   font-family: $Text;
   cursor: pointer;
   font-weight: bold;
+  transition: 0.2s ease;
   &:hover {
     background: $hover-button;
   }

@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
 
 import '../styles/globals.scss'; // import global SCSS
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import { store } from './store/auth';
 import { Bangers, Poppins } from 'next/font/google';

@@ -1,13 +1,13 @@
 'use client';
 
-import type { FC } from 'react';
+import { useState, type FC } from 'react';
 import { useSelector } from 'react-redux';
-import type { RootState } from '../store/auth';
-import UserMenu from './userMenu/UserMenu';
+import type { RootState } from '../../store/auth';
+import UserMenu from '../userMenu/UserMenu';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import useAuth from '../hook/useAuth';
+import useAuth from '../../hook/useAuth';
 
 const Navbar: FC = () => {
   const user = useSelector((state: RootState) => state.auth.user);
@@ -15,11 +15,13 @@ const Navbar: FC = () => {
   const pathname = usePathname();
   useAuth();
 
+  const [menuOpen, setMenuOpen] = useState(false);
   const handleGoToLogin = () => {
     // On passe l'origine via query params
     router.push(`/login?from=${encodeURIComponent(pathname)}`);
   };
 
+  const toggleMenu = () => setMenuOpen(!menuOpen);
   return (
     <header id="navbar">
       <nav id="hors-connexion">
@@ -33,6 +35,13 @@ const Navbar: FC = () => {
               id="logo-nav"
             />
           </Link>
+        </div>
+
+        {/* Icône burger visible uniquement sur mobile */}
+        <div id="burger" onClick={toggleMenu}>
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
         </div>
 
         <div id="menus">
