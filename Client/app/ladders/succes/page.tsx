@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import './general.scss';
+import './succes.scss';
 import Link from 'next/link';
 
 const Ladders = () => {
@@ -43,7 +43,7 @@ const Ladders = () => {
                 <th className="class">Classe</th>
                 <th className="server">Serveur</th>
                 <th className="lvl">Niveau</th>
-                <th className="game">Matchs</th>
+                <th className="game">Point de succès</th>
               </tr>
             </thead>
             <tbody>
@@ -51,24 +51,8 @@ const Ladders = () => {
                 <td className="rank">1</td>
                 <td>
                   <Image
-                    src="/Miniature_Milieu.png"
+                    src="/Miniature_Ailier.png"
                     alt="Nagaa"
-                    width="50"
-                    height="50"
-                  />
-                  &nbsp;Nagaa
-                </td>
-                <td className="class">Milieu</td>
-                <td className="server">Dragos</td>
-                <td className="lvl">100 GEN</td>
-                <td className="game">2 500</td>
-              </tr>
-              <tr>
-                <td className="rank">2</td>
-                <td>
-                  <Image
-                    src="/Miniature_Aillier.png"
-                    alt="Poweur-Aizen"
                     width="50"
                     height="50"
                   />
@@ -77,14 +61,14 @@ const Ladders = () => {
                 <td className="class">Ailier</td>
                 <td className="server">Dragos</td>
                 <td className="lvl">99 GEN</td>
-                <td className="game">2 432</td>
+                <td className="game">9 245</td>
               </tr>
               <tr>
-                <td className="rank">3</td>
+                <td className="rank">2</td>
                 <td>
                   <Image
                     src="/Miniature_AT.png"
-                    alt="Luigy"
+                    alt="Poweur-Aizen"
                     width="50"
                     height="50"
                   />
@@ -93,7 +77,23 @@ const Ladders = () => {
                 <td className="class">Attaquant</td>
                 <td className="server">Dragos</td>
                 <td className="lvl">98 GEN</td>
-                <td className="game">2 396</td>
+                <td className="game">8 600</td>
+              </tr>
+              <tr>
+                <td className="rank">3</td>
+                <td>
+                  <Image
+                    src="/Miniature_Milieu.png"
+                    alt="Luigy"
+                    width="50"
+                    height="50"
+                  />
+                  &nbsp;Nagaa
+                </td>
+                <td className="class">Milieu</td>
+                <td className="server">Dragos</td>
+                <td className="lvl">100 GEN</td>
+                <td className="game">8 875</td>
               </tr>
               <tr>
                 <td className="rank">4</td>
@@ -109,13 +109,13 @@ const Ladders = () => {
                 <td className="class">Attaquant</td>
                 <td className="server">Dragos</td>
                 <td className="lvl">98 GEN</td>
-                <td className="game">2 355</td>
+                <td className="game">8 300</td>
               </tr>
               <tr>
                 <td className="rank">5</td>
                 <td>
                   <Image
-                    src="/Miniature_Milieu.png"
+                    src="/Miniature_Gardien.png"
                     alt="Zeyrox"
                     width="50"
                     height="50"
@@ -125,7 +125,7 @@ const Ladders = () => {
                 <td className="class">Gardien</td>
                 <td className="server">Dragos</td>
                 <td className="lvl">98 GEN</td>
-                <td className="game">2 326</td>
+                <td className="game">8 172</td>
               </tr>
               <tr>
                 <td className="rank">6</td>
@@ -141,7 +141,7 @@ const Ladders = () => {
                 <td className="class">Ailière</td>
                 <td className="server">Dragos</td>
                 <td className="lvl">96 GEN</td>
-                <td className="game">2 058</td>
+                <td className="game">8 058</td>
               </tr>
               <tr>
                 <td className="rank">7</td>
@@ -157,7 +157,7 @@ const Ladders = () => {
                 <td className="class">Attaquant</td>
                 <td className="server">Dragos</td>
                 <td className="lvl">94 GEN</td>
-                <td className="game">1 992</td>
+                <td className="game">7 827</td>
               </tr>
               <tr>
                 <td className="rank">8</td>
@@ -173,23 +173,23 @@ const Ladders = () => {
                 <td className="class">Milieu</td>
                 <td className="server">Dragos</td>
                 <td className="lvl">92 GEN</td>
-                <td className="game">1 765</td>
+                <td className="game">7 757</td>
               </tr>
               <tr>
                 <td className="rank">9</td>
                 <td>
                   <Image
-                    src="/Miniature_AillierF.png"
+                    src="/Miniature_Def.png"
                     alt="Waiss"
                     width="50"
                     height="50"
                   />
                   &nbsp;Collagene
                 </td>
-                <td className="class">Ailière</td>
+                <td className="class">Défenseur</td>
                 <td className="server">Dragos</td>
                 <td className="lvl">91 GEN</td>
-                <td className="game">1 699</td>
+                <td className="game">7 689</td>
               </tr>
               <tr>
                 <td className="rank">10</td>
@@ -205,7 +205,7 @@ const Ladders = () => {
                 <td className="class">Défenseur</td>
                 <td className="server">Dragos</td>
                 <td className="lvl">91 GEN</td>
-                <td className="game">1 651</td>
+                <td className="game">7 553</td>
               </tr>
             </tbody>
           </table>

@@ -140,7 +140,9 @@ const Ladders = () => {
             </ol>
           </div>
           <div id="buttonClassement">
-            <button id="voir-classement">Voir le classement complet</button>
+            <Link href="/ladders/soccherium">
+              <button id="voir-classement">Voir le classement complet</button>
+            </Link>
           </div>
         </article>
 
@@ -207,7 +209,9 @@ const Ladders = () => {
             </ol>
           </div>
           <div id="buttonClassement">
-            <button id="voir-classement">Voir le classement complet</button>
+            <Link href="/ladders/succes">
+              <button id="voir-classement">Voir le classement complet</button>
+            </Link>
           </div>
         </article>
       </section>

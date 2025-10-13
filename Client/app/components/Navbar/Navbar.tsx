@@ -8,6 +8,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import useAuth from '../../hook/useAuth';
+import './navbar.scss';
 
 const Navbar: FC = () => {
   const user = useSelector((state: RootState) => state.auth.user);
