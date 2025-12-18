@@ -11,18 +11,20 @@ import useAuth from '../../hook/useAuth';
 import './navbar.scss';
 
 const Navbar: FC = () => {
+  useAuth(); // hook client
+
   const user = useSelector((state: RootState) => state.auth.user);
   const router = useRouter();
   const pathname = usePathname();
-  useAuth();
 
   const [menuOpen, setMenuOpen] = useState(false);
+
   const handleGoToLogin = () => {
-    // On passe l'origine via query params
     router.push(`/login?from=${encodeURIComponent(pathname)}`);
   };
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
+
   return (
     <header id="navbar">
       <nav id="hors-connexion">
@@ -38,45 +40,33 @@ const Navbar: FC = () => {
           </Link>
         </div>
 
-        {/* Icône burger visible uniquement sur mobile */}
         <div id="burger" onClick={toggleMenu}>
           <span className="bar"></span>
           <span className="bar"></span>
           <span className="bar"></span>
         </div>
 
-        <div id="menus">
+        <div id="menus" className={menuOpen ? 'open' : ''}>
           <ul id="menu">
             <li className="dropdown">
-              <p>Jeu </p>
+              <p>Jeu</p>
               <ul className="dropdown-menu">
                 <li>
-                  <Link href="/ladders">
-                    <p>Ladders</p>
-                  </Link>
+                  <Link href="/ladders">Ladders</Link>
                 </li>
                 <li>
-                  <Link href="/classes">
-                    <p>Classes</p>
-                  </Link>
+                  <Link href="/classes">Classes</Link>
                 </li>
                 <li>
-                  <Link href="/decouvrir">
-                    <p>Découvrir</p>
-                  </Link>
+                  <Link href="/decouvrir">Découvrir</Link>
                 </li>
               </ul>
             </li>
-
             <li>
-              <Link href="/actus">
-                <p>Actus</p>
-              </Link>
+              <Link href="/actus">Actus</Link>
             </li>
             <li>
-              <Link href="/boutique">
-                <p>Boutique</p>
-              </Link>
+              <Link href="/boutique">Boutique</Link>
             </li>
             <li>
               <p>Autres</p>

@@ -9,6 +9,7 @@ const cors = require('cors');
 dotenv.config();
 const usersRoutes = require('./routes/signup.js');
 const loginRoutes = require('./routes/login.js');
+const shopRoutes = require('./routes/shop');
 
 const PORT = process.env.PORT;
 const app = express();
@@ -27,6 +28,11 @@ const connectedUsers = [];
 app.use(express.json());
 app.use(morgan('combined'));
 app.use(cors());
+app.use('/shop', shopRoutes);
+// Middleware pour servir les fichiers du dossier "public"
+app.use('/static', express.static('public'));
+
+// Connexion à MongoDB
 
 mongoose
   .connect(process.env.MONGO_URI)

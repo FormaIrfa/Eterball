@@ -1,42 +1,29 @@
-'use client';
+// app/layout.tsx ❌ PAS de 'use client'
 
 import { ReactNode } from 'react';
-import { Provider } from 'react-redux';
+import '../styles/globals.scss';
 
-import '../styles/globals.scss'; // import global SCSS
-import Navbar from './components/Navbar/Navbar';
-import Footer from './components/Footer/Footer';
-import { store } from './store/auth';
+import ClientProviders from './ClientProviders';
+
 import { Bangers, Poppins } from 'next/font/google';
 
-const bangers = Bangers({ weight: ['400'] });
+const bangers = Bangers({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-bangers',
+});
 
 const poppins = Poppins({
   subsets: ['latin'],
   weight: ['400', '700'],
+  variable: '--font-poppins',
 });
 
-type RootLayoutProps = {
-  children: ReactNode;
-};
-
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="fr">
-      <body className={`${(bangers.className, poppins.className)} antialiased`}>
-        {/* Redux Provider global */}
-        <Provider store={store}>
-          <div className="app-container">
-            {/* Navbar */}
-            <Navbar />
-
-            {/* Contenu des pages */}
-            <main id="content">{children}</main>
-
-            {/* Footer */}
-            <Footer />
-          </div>
-        </Provider>
+      <body className={`${poppins.variable} ${bangers.variable} antialiased`}>
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );

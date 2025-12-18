@@ -24,34 +24,36 @@ const Acceuil = () => {
         <div id="actus">
           <div id="img-actus">
             <h2>Actus et Nouveautés</h2>
-            <Image
-              id="img-dragons"
-              src="/TeamDragons.png"
-              alt="Team Dragons"
-              width={250}
-              height={180}
-            />
-            <Image
-              id="img-dragonStadium"
-              src="/DragonFlame_Stadium.png"
-              alt="Team Dragons"
-              width={250}
-              height={180}
-            />
-            <Image
-              id="img-teamDepart"
-              src="/Team_depart.png"
-              alt="Team Dragons"
-              width={250}
-              height={180}
-            />
-            <Image
-              id="img-trainAgility"
-              src="/Entrainement_agilite1.png"
-              alt="Team Dragons"
-              width={250}
-              height={180}
-            />
+            <div id="img-actus-container">
+              <Image
+                id="img-dragons"
+                src="/TeamDragons.png"
+                alt="Team Dragons"
+                width={250}
+                height={180}
+              />
+              <Image
+                id="img-dragonStadium"
+                src="/DragonFlame_Stadium.png"
+                alt="Team Dragons"
+                width={250}
+                height={180}
+              />
+              <Image
+                id="img-teamDepart"
+                src="/Team_depart.png"
+                alt="Team Dragons"
+                width={250}
+                height={180}
+              />
+              <Image
+                id="img-trainAgility"
+                src="/Entrainement_agilite1.png"
+                alt="Team Dragons"
+                width={250}
+                height={180}
+              />
+            </div>
           </div>
           <div id="events">
             <div id="titre-event">

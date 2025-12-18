@@ -155,55 +155,83 @@ nav#hors-connexion {
     border-radius: 5px;
     transition: 0.3s;
   }
+}
 
-  /* --- RESPONSIVE --- */
-  @media (max-width: 768px) {
-    header {
-      width: 100%;
-      border-radius: 0;
-      height: 60px;
-    }
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  header {
+    height: 60px;
+    padding: 0 5px;
+    margin: 0;
+    width: 100%;
+    border-radius: 0;
+  }
 
-    #burger {
-      display: flex;
-    }
+  nav#hors-connexion {
+    gap: 0;
 
-    #menus {
-      display: none;
-      position: absolute;
-      top: 70px;
-      left: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.95);
-      padding: 20px 0;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      border-top: 1px solid $secondary-background;
-    }
+    width: 100%;
+    padding: 0 10px;
+  }
 
-    #menus.open {
-      display: flex; /* visible quand ouvert */
-    }
+  #logo-nav,
+  #connexion {
+    position: static;
+  }
 
-    #menus ul#menu {
-      flex-direction: column;
-      gap: 15px;
-      position: static;
-      width: 100%;
-    }
+  #connexion ul#connecter {
+    gap: 15px;
+  }
 
-    #connexion {
-      position: static;
-      width: 100%;
-      margin-top: 10px;
-    }
+  /* MENU DESKTOP CACHÉ */
+  #menus {
+    display: none;
+  }
 
-    .dropdown-menu {
-      position: static;
-      background: transparent;
-      box-shadow: none;
-      padding: 0;
-    }
+  /* BURGER VISIBLE */
+  #burger {
+    display: flex;
+    position: static;
+  }
+
+  /* CONNEXION : icône uniquement */
+  #connexion {
+    position: static;
+    width: auto;
+  }
+
+  #connexion li:not(#compte) {
+    display: none; // cache langue + bouton jouer
+  }
+}
+
+@media (max-width: 768px) {
+  #menus.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0 0 0 0;
+    background: rgba(0, 0, 0, 0.97);
+
+    z-index: 1500;
+  }
+
+  #menus ul#menu {
+    flex-direction: column;
+    gap: 2px;
+    font-size: 1.4rem;
+  }
+
+  .dropdown-menu {
+    display: block;
+    position: static;
+    background: transparent;
+    padding: 0;
+  }
+
+  .dropdown-menu li {
+    padding: 8px 0;
+    font-size: 1rem;
+    opacity: 0.85;
   }
 }

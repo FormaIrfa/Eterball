@@ -1,6 +1,6 @@
-
-import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "./authSlice"; 
+'use client';
+import { configureStore } from '@reduxjs/toolkit';
+import authSlice from './authSlice';
 // Création du store
 export const store = configureStore({
   reducer: {

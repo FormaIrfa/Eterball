@@ -4,6 +4,16 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname, // force Client comme racine
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '5000',
+        search: '',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

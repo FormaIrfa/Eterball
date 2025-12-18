@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { redirect, useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import './login.scss';
@@ -13,7 +13,15 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const router = useRouter();
   const dispatch = useDispatch();
+
   const isConnected = useSelector((store: RootState) => store.auth.isConnected);
+
+  useEffect(() => {
+    if (isConnected) {
+      router.replace('/');
+    }
+  }, [isConnected, router]);
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -36,22 +44,18 @@ const Login = () => {
       }
 
       const data = await response.json();
-      console.log('Connexion réussie :', data);
 
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
-      }
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
 
-      // 👉 Mapping vers ton slice
       dispatch(
         login({
           token: data.token,
           user: {
             id: data.user.id,
-            name: data.user.username, // tu peux aussi concat username + surname
-            avatar: '/assets/Coupe_Casquette.png', // par défaut pour l'instant
-            eter: data.user.eter ?? 0, // si backend ne renvoie pas encore, mets 0
+            name: data.user.username,
+            avatar: '/assets/Coupe_Casquette.png',
+            eter: data.user.eter ?? 0,
           },
         })
       );
@@ -63,8 +67,6 @@ const Login = () => {
     }
   };
 
-  if (isConnected) redirect('/');
-
   return (
     <div id="loginPage">
       <form onSubmit={handleLogin}>
@@ -72,7 +74,7 @@ const Login = () => {
 
         <label>
           <span>
-            Nom d&apos;utilisateur <span id="star">*</span> :{' '}
+            Nom d&apos;utilisateur <span id="star">*</span> :
           </span>
           <input
             type="text"
@@ -83,7 +85,7 @@ const Login = () => {
 
         <label>
           <span>
-            Mot de passe <span id="star">*</span> :{' '}
+            Mot de passe <span id="star">*</span> :
           </span>
           <input
             type="password"

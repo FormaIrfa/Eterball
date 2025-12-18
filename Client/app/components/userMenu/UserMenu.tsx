@@ -1,22 +1,20 @@
 'use client';
 
-import { useRef, useState, useEffect, type FC } from 'react';
+import { useState, useRef, useEffect, type FC } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/auth';
 import { logout } from '../../store/auth/authSlice';
 import Image from 'next/image';
-
 import styles from './UserMenu.module.scss';
 
 const UserMenu: FC = () => {
   const user = useSelector((s: RootState) => s.auth.user);
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(false);
 
+  // Tous les hooks sont top-level
+  const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const closeTimer = useRef<number | null>(null);
-
-  if (!user) return null;
 
   const clearCloseTimer = () => {
     if (closeTimer.current) {
@@ -44,6 +42,9 @@ const UserMenu: FC = () => {
     return () => document.removeEventListener('mousedown', onDocClick);
   }, []);
 
+  // ✅ Condition sur le rendu seulement ici, après tous les hooks
+  if (!user) return null;
+
   return (
     <div
       ref={wrapRef}
@@ -51,9 +52,8 @@ const UserMenu: FC = () => {
       onMouseLeave={handleLeave}
       className={styles.wrapper}
     >
-      {/* Avatar (déclencheur) */}
       <Image
-        src="/assets/Coupe_Casquette.png"
+        src={user.avatar || '/assets/Coupe_Casquette.png'}
         alt="avatar utilisateur"
         width={40}
         height={40}
@@ -61,12 +61,11 @@ const UserMenu: FC = () => {
         onClick={() => setOpen((v) => !v)}
       />
 
-      {/* Menu déroulant */}
       {open && (
         <div role="menu" aria-label="menu utilisateur" className={styles.menu}>
           <div className={styles.header}>
             <Image
-              src="/assets/Coupe_Casquette.png"
+              src={user.avatar || '/assets/Coupe_Casquette.png'}
               alt="avatar"
               width={40}
               height={40}
