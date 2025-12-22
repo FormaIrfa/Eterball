@@ -23,10 +23,11 @@ nav#hors-connexion {
 
   #logo-nav {
     position: absolute;
-    top: 0;
-    left: 70;
+    top: 5;
+    left: 50;
     z-index: 10;
   }
+
   div#menus {
     ul#menu {
       position: absolute;
@@ -43,16 +44,20 @@ nav#hors-connexion {
       margin: 0;
       text-align: center;
     }
+
     ul#lien-jeu {
       list-style: none;
     }
+
     li {
       list-style: none;
     }
+
     a {
       text-decoration: none;
       color: $text-color;
     }
+
     p {
       margin: 25px 0 23px 0;
     }
@@ -74,6 +79,7 @@ nav#hors-connexion {
       align-items: center;
       gap: 5px;
     }
+
     ul#connecter {
       list-style: none;
       margin: 0;
@@ -83,21 +89,25 @@ nav#hors-connexion {
       justify-content: flex-end;
     }
   }
+
   li#planete {
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
   li#compte {
     display: flex;
     justify-content: center;
     align-items: center;
+
     img {
       display: flex;
       justify-content: center;
       align-items: center;
     }
   }
+
   button#jouer {
     font-size: 1.2rem;
   }
@@ -113,9 +123,9 @@ nav#hors-connexion {
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 100%; /* juste en dessous de "Jeu" */
+  top: 100%;
   left: -80;
-  background-color: rgba(21, 21, 21, 0.9); /* ou la couleur de ton choix */
+  background-color: rgba(21, 21, 21, 0.9);
   padding: 20px;
   border-radius: 5px;
   min-width: 150px;
@@ -135,7 +145,6 @@ nav#hors-connexion {
 }
 
 /* --- MENU BURGER --- */
-
 #burger {
   display: none;
   flex-direction: column;
@@ -143,9 +152,6 @@ nav#hors-connexion {
   width: 25px;
   height: 20px;
   cursor: pointer;
-  position: absolute;
-  right: 25px;
-  top: 25px;
   z-index: 2000;
 
   .bar {
@@ -161,77 +167,212 @@ nav#hors-connexion {
 @media (max-width: 768px) {
   header {
     height: 60px;
-    padding: 0 5px;
+    padding: 0 10px;
     margin: 0;
     width: 100%;
     border-radius: 0;
+    justify-content: space-between;
+    gap: 0;
   }
 
   nav#hors-connexion {
     gap: 0;
-
     width: 100%;
-    padding: 0 10px;
+    padding: 0;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    #logo-nav {
+      position: absolute;
+      top: -15;
+      left: 0;
+    }
+
+    #logo-container {
+      flex-shrink: 0;
+    }
   }
 
-  #logo-nav,
+  /* BARRE DROITE : Compte + Burger */
   #connexion {
-    position: static;
-  }
-
-  #connexion ul#connecter {
+    position: static !important;
+    width: 200px !important;
+    display: flex;
+    align-items: center;
     gap: 15px;
+
+    ul#connecter {
+      gap: 0;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Afficher UNIQUEMENT l'icône compte */
+    li#compte {
+      display: flex;
+      margin: 0;
+    }
+
+    /* Cacher langue et bouton jouer */
+    li:not(#compte) {
+      display: none;
+    }
   }
 
-  /* MENU DESKTOP CACHÉ */
-  #menus {
-    display: none;
-  }
-
-  /* BURGER VISIBLE */
+  /* BURGER à droite */
   #burger {
     display: flex;
     position: static;
+    margin-left: 15px;
   }
 
-  /* CONNEXION : icône uniquement */
-  #connexion {
-    position: static;
-    width: auto;
+  /* DÉSACTIVER LES POSITIONS ABSOLUES SUR MOBILE */
+  div#menus {
+    display: none;
+
+    ul#menu {
+      position: static !important;
+      left: auto !important;
+      width: 100% !important;
+    }
   }
 
-  #connexion li:not(#compte) {
-    display: none; // cache langue + bouton jouer
-  }
-}
-
-@media (max-width: 768px) {
+  /* MENU BURGER OUVERT */
   #menus.open {
     display: flex;
     flex-direction: column;
     position: fixed;
-    inset: 0 0 0 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: rgba(0, 0, 0, 0.97);
-
     z-index: 1500;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 80px;
+    overflow-y: auto;
   }
 
-  #menus ul#menu {
+  #menus.open ul#menu {
     flex-direction: column;
-    gap: 2px;
-    font-size: 1.4rem;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0;
+    font-size: 1.6rem;
+    width: 90%;
+    max-width: 500px;
+    height: auto;
   }
 
+  #menus.open ul#menu > li {
+    width: 100%;
+    margin: 0;
+  }
+
+  /* DÉSACTIVER LE HOVER SUR MOBILE */
+  .dropdown:hover .dropdown-menu {
+    display: none;
+  }
+
+  /* DROPDOWN BOUTON STYLE */
+  .dropdown {
+    background-color: rgba(80, 80, 80, 0.8);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  .dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    width: 100%;
+    cursor: pointer;
+    font-weight: 500;
+
+    &::after {
+      content: '▼';
+      font-size: 0.8em;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  /* Rotation de la flèche quand ouvert */
+  .dropdown.active .dropdown-toggle::after {
+    transform: rotate(180deg);
+  }
+
+  /* DROPDOWN MENU MOBILE - Animation slide */
   .dropdown-menu {
-    display: block;
+    display: block !important;
     position: static;
     background: transparent;
     padding: 0;
+    box-shadow: none;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+
+  /* AFFICHER LE DROPDOWN avec animation */
+  .dropdown.active .dropdown-menu {
+    max-height: 500px;
+    transition: max-height 0.4s ease-in;
   }
 
   .dropdown-menu li {
-    padding: 8px 0;
-    font-size: 1rem;
-    opacity: 0.85;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    opacity: 0.9;
+    background-color: rgba(40, 40, 40, 0.6);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      background-color: rgba(60, 60, 60, 0.8);
+    }
+  }
+
+  .dropdown-menu li a {
+    display: block;
+    width: 100%;
+  }
+
+  /* AUTRES ITEMS DU MENU (non-dropdown) */
+  ul#menu > li:not(.dropdown) {
+    background-color: rgba(80, 80, 80, 0.8);
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    text-align: center;
+
+    a,
+    p {
+      display: block;
+      width: 100%;
+      margin: 0;
+    }
+  }
+
+  /* Bouton JOUER en bas du menu */
+  #menus.open button#jouer {
+    display: block;
+    width: 90%;
+    max-width: 500px;
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 1.3rem;
+
+    border: none;
+    border-radius: 8px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
   }
 }

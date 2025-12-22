@@ -275,19 +275,19 @@
       width: 100%;
 
       h2 {
-        font-size: 2.4rem;
+        font-size: 2rem;
         margin-bottom: 15px;
       }
 
       #img-actus-container {
         flex-direction: column;
-        gap: 15px;
+        gap: 25px;
         width: 100%;
         align-items: center;
 
         img {
-          width: 90% !important;
-          height: auto !important;
+          width: 80%;
+          height: 200px;
           max-width: 100%;
         }
       }
@@ -301,7 +301,7 @@
       padding: 15px;
 
       h2 {
-        font-size: 2.4rem;
+        font-size: 2rem;
         margin-bottom: 15px;
       }
 
@@ -368,6 +368,13 @@
 
   @media screen and (max-width: 760px) {
     margin: 10px 0 0 0;
+    #img-jeu {
+      width: 80%;
+      gap: 25px;
+      img {
+        height: 200px;
+      }
+    }
   }
 }
 
@@ -411,10 +418,12 @@
   #intro-personnages {
     width: 600px;
     text-align: center;
+
     #description {
       text-align: center;
       font-family: $Text;
       font-size: 1.3rem;
+      background-color: #36353580;
     }
 
     button#pageJoueurs {
@@ -437,7 +446,16 @@
       }
     }
   }
-  @media screen and (max-width: 760px) {
+  @media screen and (max-width: 768px) {
     margin: 10px 0 10px 0;
+    h2 {
+      font-size: 2rem;
+    }
+    #intro-personnages #description {
+      font-size: 1.1rem;
+      padding: 0 15px;
+      text-align: center;
+      background-color: #36353580;
+    }
   }
 }
