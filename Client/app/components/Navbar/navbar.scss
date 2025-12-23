@@ -19,7 +19,6 @@ header {
 nav#hors-connexion {
   display: flex;
   align-items: center;
-  gap: 250px;
 
   #logo-nav {
     position: absolute;
@@ -176,7 +175,6 @@ nav#hors-connexion {
   }
 
   nav#hors-connexion {
-    gap: 0;
     width: 100%;
     padding: 0;
     position: relative;
@@ -192,6 +190,17 @@ nav#hors-connexion {
 
     #logo-container {
       flex-shrink: 0;
+    }
+    div#menus {
+      ul#menu {
+        gap: 0;
+        position: static;
+        left: auto;
+        width: 100%;
+      }
+      p {
+        margin: 0;
+      }
     }
   }
 
@@ -233,12 +242,6 @@ nav#hors-connexion {
   /* DÉSACTIVER LES POSITIONS ABSOLUES SUR MOBILE */
   div#menus {
     display: none;
-
-    ul#menu {
-      position: static !important;
-      left: auto !important;
-      width: 100% !important;
-    }
   }
 
   /* MENU BURGER OUVERT */
@@ -270,8 +273,8 @@ nav#hors-connexion {
   }
 
   #menus.open ul#menu > li {
-    width: 100%;
-    margin: 0;
+    width: 90%;
+    margin-bottom: 12px;
   }
 
   /* DÉSACTIVER LE HOVER SUR MOBILE */
@@ -282,20 +285,19 @@ nav#hors-connexion {
   /* DROPDOWN BOUTON STYLE */
   .dropdown {
     background-color: rgba(80, 80, 80, 0.8);
-    border-radius: 8px;
-    margin-bottom: 10px;
+    border-radius: 5px;
+
     overflow: hidden;
   }
 
   .dropdown-toggle {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    width: 100%;
+    padding: 8px 20px;
+    letter-spacing: 3px;
     cursor: pointer;
     font-weight: 500;
-
+    font-size: 1.5rem;
     &::after {
       content: '▼';
       font-size: 0.8em;
@@ -318,7 +320,7 @@ nav#hors-connexion {
     margin: 0;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-out;
+    transition: max-height 0.4s;
   }
 
   /* AFFICHER LE DROPDOWN avec animation */
@@ -344,33 +346,17 @@ nav#hors-connexion {
     width: 100%;
   }
 
-  /* AUTRES ITEMS DU MENU (non-dropdown) */
-  ul#menu > li:not(.dropdown) {
-    background-color: rgba(80, 80, 80, 0.8);
-    border-radius: 8px;
-    padding: 15px 20px;
-    margin-bottom: 10px;
-    text-align: center;
-
-    a,
-    p {
-      display: block;
-      width: 100%;
-      margin: 0;
-    }
-  }
-
   /* Bouton JOUER en bas du menu */
   #menus.open button#jouer {
     display: block;
     width: 90%;
     max-width: 500px;
     margin-top: 20px;
-    padding: 15px;
-    font-size: 1.3rem;
+    padding: 2px;
+    font-size: 1.5rem;
 
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
     color: black;
     font-weight: bold;
     cursor: pointer;

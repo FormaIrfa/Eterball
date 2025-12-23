@@ -132,6 +132,7 @@ const Navbar: FC = () => {
 
         <div id="menus" className={menuOpen ? 'open' : ''}>
           <ul id="menu">
+            {/* JEU */}
             <li
               className={`dropdown ${openDropdown === 'jeu' ? 'active' : ''}`}
             >
@@ -159,22 +160,100 @@ const Navbar: FC = () => {
                 </li>
               </ul>
             </li>
-            <li>
-              <Link href="/actus" onClick={closeMenu}>
+
+            {/* ACTUS */}
+            <li
+              className={`dropdown ${openDropdown === 'actus' ? 'active' : ''}`}
+            >
+              <span
+                className="dropdown-toggle"
+                onClick={() => toggleDropdown('actus')}
+              >
                 Actus
-              </Link>
+              </span>
+              <ul className="dropdown-menu">
+                <li>
+                  <Link href="/actus/news" onClick={closeMenu}>
+                    News
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/actus/patchs" onClick={closeMenu}>
+                    Patch notes
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/actus/events" onClick={closeMenu}>
+                    Événements
+                  </Link>
+                </li>
+              </ul>
             </li>
-            <li>
-              <Link href="/boutique" onClick={closeMenu}>
+
+            {/* BOUTIQUE */}
+            <li
+              className={`dropdown ${
+                openDropdown === 'boutique' ? 'active' : ''
+              }`}
+            >
+              <span
+                className="dropdown-toggle"
+                onClick={() => toggleDropdown('boutique')}
+              >
                 Boutique
-              </Link>
+              </span>
+              <ul className="dropdown-menu">
+                <li>
+                  <Link href="/boutique/items" onClick={closeMenu}>
+                    Objets
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/boutique/packs" onClick={closeMenu}>
+                    Packs
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/boutique/cosmetiques" onClick={closeMenu}>
+                    Cosmétiques
+                  </Link>
+                </li>
+              </ul>
             </li>
-            <li>
-              <p>Autres</p>
+
+            {/* AUTRES */}
+            <li
+              className={`dropdown ${
+                openDropdown === 'autres' ? 'active' : ''
+              }`}
+            >
+              <span
+                className="dropdown-toggle"
+                onClick={() => toggleDropdown('autres')}
+              >
+                Autres
+              </span>
+              <ul className="dropdown-menu">
+                <li>
+                  <Link href="/faq" onClick={closeMenu}>
+                    FAQ
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/support" onClick={closeMenu}>
+                    Support
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/contact" onClick={closeMenu}>
+                    Contact
+                  </Link>
+                </li>
+              </ul>
             </li>
           </ul>
 
-          {/* Bouton Jouer visible uniquement dans le menu mobile */}
+          {/* Bouton Jouer uniquement mobile */}
           {menuOpen && (
             <button id="jouer" onClick={closeMenu}>
               Jouer
