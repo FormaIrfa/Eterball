@@ -131,7 +131,7 @@ const Ladders = () => {
                 <td className="rank">6</td>
                 <td>
                   <Image
-                    src="/Miniature_AillierF.png"
+                    src="/Miniature_AilierF.png"
                     alt="Satsuki71"
                     width="50"
                     height="50"

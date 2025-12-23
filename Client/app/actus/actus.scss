@@ -1,0 +1,109 @@
+@use './styles/variables' as *;
+
+.actus-page {
+  padding: 100px 30px;
+  background: linear-gradient(#07163a, #020b24);
+  min-height: 100vh;
+}
+
+.actus-title {
+  color: $text-color;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+/* ===== LAYOUT HAUT ===== */
+.actus-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+/* ===== CARDS ===== */
+.actus-card {
+  position: relative;
+  display: block;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+  text-decoration: none;
+  cursor: pointer;
+
+  img {
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+/* FEATURED */
+.actus-card--featured {
+  aspect-ratio: 16 / 9;
+}
+
+/* SIDE */
+.actus-card--side {
+  aspect-ratio: 16 / 10;
+}
+
+/* OVERLAY */
+.actus-overlay {
+  position: absolute;
+  inset: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+
+  h2,
+  h3 {
+    color: $text-color;
+    margin-top: 5px;
+    font-family: $Title;
+    letter-spacing: 4px;
+  }
+}
+
+/* TAG */
+.actus-tag {
+  background: #1a36c2;
+  color: $button-color;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  width: fit-content;
+  border-radius: 4px;
+}
+
+/* ===== GRID BAS ===== */
+.actus-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+
+  .actus-card {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .actus-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .actus-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .actus-grid {
+    grid-template-columns: 1fr;
+  }
+}

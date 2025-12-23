@@ -31,6 +31,7 @@ main {
           justify-content: center;
           align-items: center;
           text-align: center;
+          font-family: $Title;
         }
       }
       .item-list {
@@ -47,6 +48,7 @@ main {
           display: flex;
           justify-content: center;
           margin-bottom: 55px;
+          font-family: $Text;
           .card-container {
             img {
               border-radius: 8px 8px 0 0;

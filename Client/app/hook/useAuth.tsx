@@ -1,28 +1,47 @@
 'use client';
 import { useEffect } from 'react';
-import { login } from '../store/auth/authSlice';
+import { login, logout } from '../store/auth/authSlice'; // ← AJOUTER logout
 import { useDispatch } from 'react-redux';
 
 const useAuth = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     const token = localStorage.getItem('token');
-    const user = localStorage.getItem('user');
+    const userString = localStorage.getItem('user');
 
-    if (token && user) {
-      dispatch(
-        login({
-          token: token,
-          user: {
-            id: user.id,
-            name: user.username,
-            avatar: '/assets/Coupe_Casquette.png',
-            eter: user.eter ?? 0,
-          },
-        })
-      );
+    // ← AJOUTER CETTE VÉRIFICATION
+    // Si pas de token OU pas d'utilisateur, on s'assure d'être déconnecté
+    if (!token || !userString) {
+      dispatch(logout());
+      return;
     }
-  }, []);
+
+    if (token && userString) {
+      try {
+        // Parser le JSON stocké dans localStorage
+        const user = JSON.parse(userString);
+
+        dispatch(
+          login({
+            token: token,
+            user: {
+              id: user.id,
+              name: user.username,
+              avatar: user.avatar || '/assets/Coupe_Casquette.png',
+              eter: user.eter ?? 0,
+            },
+          })
+        );
+      } catch (error) {
+        console.error('Erreur lors du parsing des données utilisateur:', error);
+        // En cas d'erreur, nettoyer le localStorage
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        dispatch(logout()); // ← AJOUTER CETTE LIGNE
+      }
+    }
+  }, [dispatch]);
 };
 
 export default useAuth;

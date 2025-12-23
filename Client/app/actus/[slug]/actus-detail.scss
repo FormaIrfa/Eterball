@@ -1,0 +1,36 @@
+@use './styles/variables' as *;
+.actus-detail {
+  background: #020b24;
+  color: $text-color;
+  min-height: 100vh;
+  padding: 120px 50px;
+}
+
+.hero {
+  position: relative;
+  height: 60vh;
+
+  img {
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+  }
+
+  h1 {
+    position: absolute;
+    bottom: 40px;
+    left: 5vw;
+    font-size: 3rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+  }
+}
+
+.content {
+  padding: 40px 20px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  font-family: $Text;
+  color: $text-color;
+  background-color: $secondary-background;
+  border-radius: 0 0 12px 12px;
+}
