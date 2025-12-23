@@ -41,7 +41,7 @@ const Ladders = () => {
                   <span className="rank">2</span>&nbsp;
                   <Image
                     id="personnage"
-                    src="/Miniature_Aillier.png"
+                    src="/Miniature_Ailier.png"
                     alt="first-player"
                     width={50}
                     height={50}
@@ -126,7 +126,7 @@ const Ladders = () => {
                   <span className="rank">3</span>&nbsp;
                   <Image
                     id="personnage"
-                    src="/Miniature_Aillier.png"
+                    src="/Miniature_Ailier.png"
                     alt="first-player"
                     width={50}
                     height={50}
@@ -162,7 +162,7 @@ const Ladders = () => {
                   <span className="rank">1</span>&nbsp;
                   <Image
                     id="personnage"
-                    src="/Miniature_Aillier.png"
+                    src="/Miniature_Ailier.png"
                     alt="first-player"
                     width={50}
                     height={50}

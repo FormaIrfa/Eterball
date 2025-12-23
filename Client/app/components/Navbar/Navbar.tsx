@@ -173,7 +173,7 @@ const Navbar: FC = () => {
               </span>
               <ul className="dropdown-menu">
                 <li>
-                  <Link href="/actus/news" onClick={closeMenu}>
+                  <Link href="/actus" onClick={closeMenu}>
                     News
                   </Link>
                 </li>
@@ -204,8 +204,8 @@ const Navbar: FC = () => {
               </span>
               <ul className="dropdown-menu">
                 <li>
-                  <Link href="/boutique/items" onClick={closeMenu}>
-                    Objets
+                  <Link href="/boutique" onClick={closeMenu}>
+                    Tout
                   </Link>
                 </li>
                 <li>

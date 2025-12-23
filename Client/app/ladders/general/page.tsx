@@ -67,7 +67,7 @@ const Ladders = () => {
                 <td className="rank">2</td>
                 <td>
                   <Image
-                    src="/Miniature_Aillier.png"
+                    src="/Miniature_Ailier.png"
                     alt="Poweur-Aizen"
                     width="50"
                     height="50"
@@ -131,7 +131,7 @@ const Ladders = () => {
                 <td className="rank">6</td>
                 <td>
                   <Image
-                    src="/Miniature_AillierF.png"
+                    src="/Miniature_AilierF.png"
                     alt="Satsuki71"
                     width="50"
                     height="50"
@@ -179,7 +179,7 @@ const Ladders = () => {
                 <td className="rank">9</td>
                 <td>
                   <Image
-                    src="/Miniature_AillierF.png"
+                    src="/Miniature_AilierF.png"
                     alt="Waiss"
                     width="50"
                     height="50"
