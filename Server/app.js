@@ -10,9 +10,18 @@ dotenv.config();
 const usersRoutes = require('./routes/signup.js');
 const loginRoutes = require('./routes/login.js');
 const shopRoutes = require('./routes/shop');
+const classesRoutes = require('./routes/classes');
 
 const PORT = process.env.PORT;
 const app = express();
+
+app.use(
+  cors({
+    origin: ['http://localhost:3000', 'http://localhost:5173'],
+    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+    credentials: true,
+  })
+);
 
 const server = http.createServer(app);
 const io = socketIo(server, {
@@ -29,6 +38,7 @@ app.use(express.json());
 app.use(morgan('combined'));
 app.use(cors());
 app.use('/shop', shopRoutes);
+app.use('/api', classesRoutes);
 // Middleware pour servir les fichiers du dossier "public"
 app.use('/static', express.static('public'));
 
