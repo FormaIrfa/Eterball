@@ -22,8 +22,11 @@ export default function ClassesPage() {
         setError(null);
         const data = await getClasses();
         if (mounted) setClasses(data);
-      } catch (e: any) {
-        if (mounted) setError(e?.message ?? 'Erreur inconnue');
+      } catch (e: unknown) {
+        if (mounted) {
+          const message = e instanceof Error ? e.message : 'Erreur inconnue';
+          setError(message);
+        }
       } finally {
         if (mounted) setLoading(false);
       }
