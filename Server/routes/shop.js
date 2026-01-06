@@ -8,9 +8,10 @@ router.get('/items', async (req, res) => {
     const items = await Item.find();
     res.status(200).json(items);
   } catch (err) {
-    res
-      .status(500)
-      .json({ message: 'Erreur serveur lors de la récupération des items.' });
+    console.error('GET /shop/items ERROR:', err); // <- AJOUT
+    res.status(500).json({
+      message: 'Erreur serveur lors de la récupération des items.',
+    });
   }
 });
 

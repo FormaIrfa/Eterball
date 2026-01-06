@@ -12,21 +12,27 @@ const loginRoutes = require('./routes/login.js');
 const shopRoutes = require('./routes/shop');
 const classesRoutes = require('./routes/classes');
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 const app = express();
+const allowedOrigins = [
+  process.env.CLIENT_URL, // ex: https://eterball.vercel.app
+  'http://localhost:3000',
+  'http://localhost:5173',
+].filter(Boolean);
 
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'http://localhost:5173'],
+    origin: allowedOrigins,
     methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
     credentials: true,
   })
 );
+app.options(/.*/, cors({ origin: allowedOrigins, credentials: true }));
 
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: ['http://localhost:5000', 'http://localhost:5173'],
+    origin: allowedOrigins,
     methods: ['GET', 'POST'],
     credentials: true,
   },
@@ -36,22 +42,21 @@ const connectedUsers = [];
 
 app.use(express.json());
 app.use(morgan('combined'));
-app.use(cors());
 app.use('/shop', shopRoutes);
 app.use('/api', classesRoutes);
-// Middleware pour servir les fichiers du dossier "public"
-app.use('/static', express.static('public'));
 
 // Connexion à MongoDB
+console.log('Tentative de connexion MongoDB...');
+app.get('/health', (req, res) => res.status(200).send('ok'));
+
+server.listen(PORT, () => {
+  console.log(`Serveur démarré sur le port ${PORT}`);
+});
 
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log('Connecté à MongoDB');
-  })
-  .catch((err) => {
-    console.error('Erreur de connexion a MongoDB:', err);
-  });
+  .then(() => console.log('Connecté à MongoDB'))
+  .catch((err) => console.error('Erreur MongoDB:', err));
 
 app.use('/', usersRoutes);
 app.use('/', loginRoutes);
@@ -107,8 +112,4 @@ io.on('connection', (socket) => {
       connectedUsers.map((u) => u.username)
     );
   });
-});
-
-server.listen(PORT, () => {
-  console.log(`Serveur est démarré sur le port ${PORT}`);
 });
