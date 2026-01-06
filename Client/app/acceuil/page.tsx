@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import './accueil.scss';
 import { useState } from 'react';
+import Link from 'next/link';
 const Acceuil = () => {
   const classesData = [
     {
@@ -53,7 +54,9 @@ const Acceuil = () => {
           </p>
         </div>
         <div>
-          <button id="download">Télécharger</button>
+          <Link href="/download">
+            <button id="download">Télécharger</button>
+          </Link>
         </div>
       </section>
 
