@@ -26,6 +26,14 @@ const Navbar: FC = () => {
   const handleGoToLogin = () => {
     router.push(`/login?from=${encodeURIComponent(pathname)}`);
   };
+  const closeMenu = () => {
+    setMenuOpen(false);
+    setOpenDropdown(null);
+  };
+  const handleGoToDownload = () => {
+    router.push('/download');
+    closeMenu();
+  };
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -36,11 +44,6 @@ const Navbar: FC = () => {
     setOpenDropdown((prev) => (prev === name ? null : name));
   };
 
-  const closeMenu = () => {
-    setMenuOpen(false);
-    setOpenDropdown(null);
-  };
-
   if (!mounted) {
     return (
       <header id="navbar">
@@ -48,7 +51,7 @@ const Navbar: FC = () => {
           <div id="logo-container">
             <Link href="/">
               <Image
-                src="/Logo.png"
+                src="/Logo(2).png"
                 alt="logo"
                 width={120}
                 height={110}
@@ -106,7 +109,9 @@ const Navbar: FC = () => {
                 />
               </li>
               <li>
-                <button id="jouer">Jouer</button>
+                <button className="jouer" onClick={handleGoToDownload}>
+                  Jouer
+                </button>
               </li>
             </ul>
           </div>
@@ -121,7 +126,7 @@ const Navbar: FC = () => {
         <div id="logo-container">
           <Link href="/">
             <Image
-              src="/Logo.png"
+              src="/Logo(2).png"
               alt="logo"
               width={120}
               height={110}
@@ -255,7 +260,7 @@ const Navbar: FC = () => {
 
           {/* Bouton Jouer uniquement mobile */}
           {menuOpen && (
-            <button id="jouer" onClick={closeMenu}>
+            <button className="jouer" onClick={handleGoToDownload}>
               Jouer
             </button>
           )}
@@ -289,7 +294,9 @@ const Navbar: FC = () => {
               )}
             </li>
             <li>
-              <button id="jouer">Jouer</button>
+              <button className="jouer" onClick={handleGoToDownload}>
+                Jouer
+              </button>
             </li>
           </ul>
 
