@@ -4,7 +4,7 @@ const API_ORIGIN =
   process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '') ||
   'http://localhost:5000';
 
-export async function getClasses(): Promise<ClassType[]> {
+const getClasses = async (): Promise<ClassType[]> => {
   const res = await fetch(`${API_ORIGIN}/api/classes`, { cache: 'no-store' });
 
   if (!res.ok) {
@@ -13,9 +13,9 @@ export async function getClasses(): Promise<ClassType[]> {
   }
 
   return res.json();
-}
+};
 
-export async function getClassBySlug(slug: string): Promise<ClassType> {
+const getClassBySlug = async (slug: string): Promise<ClassType> => {
   const res = await fetch(`${API_ORIGIN}/api/classes/${slug}`, {
     cache: 'no-store',
   });
@@ -26,4 +26,6 @@ export async function getClassBySlug(slug: string): Promise<ClassType> {
   }
 
   return res.json();
-}
+};
+
+export { getClasses, getClassBySlug };

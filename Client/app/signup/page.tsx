@@ -2,12 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import './signup.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/auth';
 
-export default function SignUp() {
+const SignUp = () => {
   const [username, setUsername] = useState('');
   const [usersurname, setUsersurname] = useState('');
   const [email, setEmail] = useState('');
@@ -90,4 +89,6 @@ export default function SignUp() {
       </form>
     </div>
   );
-}
+};
+
+export default SignUp;

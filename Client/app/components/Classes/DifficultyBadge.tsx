@@ -5,11 +5,7 @@ const map = {
   expert: 4,
 };
 
-export default function DifficultyBadge({
-  difficulty,
-}: {
-  difficulty: keyof typeof map;
-}) {
+const DifficultyBadge = ({ difficulty }: { difficulty: keyof typeof map }) => {
   const level = map[difficulty];
 
   return (
@@ -21,4 +17,6 @@ export default function DifficultyBadge({
       ))}
     </div>
   );
-}
+};
+
+export default DifficultyBadge;

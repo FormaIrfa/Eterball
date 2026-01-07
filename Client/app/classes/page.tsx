@@ -7,7 +7,7 @@ import { ClassType } from '@/app/types/class';
 import { getClasses } from '@/services/classesApi';
 import './classes.scss';
 
-export default function ClassesPage() {
+const ClassesPage = () => {
   const [classes, setClasses] = useState<ClassType[]>([]);
   const [selected, setSelected] = useState<ClassType | null>(null);
   const [loading, setLoading] = useState(true);
@@ -66,4 +66,6 @@ export default function ClassesPage() {
       )}
     </>
   );
-}
+};
+
+export default ClassesPage;

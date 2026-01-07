@@ -1,7 +1,7 @@
-import Acceuil from "./acceuil/page";
+import Acceuil from './acceuil/page';
 
+const Page = () => {
+  return <Acceuil />;
+};
 
-
-export default function Page() {
-  return <Acceuil />
-}
+export default Page;

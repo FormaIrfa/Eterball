@@ -9,7 +9,7 @@ type Props = {
   onClose: () => void;
 };
 
-export default function ClassModal({ data, onClose }: Props) {
+const ClassModal = ({ data, onClose }: Props) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
@@ -56,4 +56,6 @@ export default function ClassModal({ data, onClose }: Props) {
       </div>
     </div>
   );
-}
+};
+
+export default ClassModal;
