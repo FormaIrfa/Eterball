@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './login.scss';
 import { login } from '../store/auth/authSlice';
 import { RootState } from '../store/auth';
+import { API_ORIGIN } from '@/services/apiOrigin';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -31,7 +32,7 @@ const Login = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/login', {
+      const response = await fetch(`${API_ORIGIN}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
