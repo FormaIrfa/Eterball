@@ -22,9 +22,11 @@ const allowedOrigins = [
 
 const corsOptions = {
   origin: (origin, cb) => {
-    if (!origin) return cb(null, true); // Postman/curl/navigation directe
+    if (!origin) return cb(null, true);
     if (allowedOrigins.includes(origin)) return cb(null, true);
-    return cb(new Error(`CORS blocked for origin: ${origin}`));
+
+    // ✅ Refuse proprement (pas de 500)
+    return cb(null, false);
   },
   credentials: true,
   methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
@@ -32,7 +34,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options(/.*/, cors(corsOptions)); // ✅ Express 5 OK
+app.options(/.*/, cors(corsOptions));
 
 const server = http.createServer(app);
 const io = socketIo(server, {
