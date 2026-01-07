@@ -6,7 +6,7 @@ type Props = {
   onClick: () => void;
 };
 
-export default function ClassCard({ data, onClick }: Props) {
+const ClassCard = ({ data, onClick }: Props) => {
   return (
     <button type="button" className="class-card" onClick={onClick}>
       <div className="class-card__image">
@@ -24,4 +24,6 @@ export default function ClassCard({ data, onClick }: Props) {
       </div>
     </button>
   );
-}
+};
+
+export default ClassCard;

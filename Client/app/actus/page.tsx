@@ -47,7 +47,7 @@ const ACTUS = [
 const featured = ACTUS.find((a) => a.featured);
 const others = ACTUS.filter((a) => !a.featured);
 
-export default function ActusPage() {
+const ActusPage = () => {
   return (
     <main className="actus-page">
       <h1 className="actus-title">Actualités</h1>
@@ -97,4 +97,6 @@ export default function ActusPage() {
       </section>
     </main>
   );
-}
+};
+
+export default ActusPage;

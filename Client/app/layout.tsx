@@ -19,7 +19,7 @@ const poppins = Poppins({
   variable: '--font-poppins',
 });
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="fr">
       <body className={`${poppins.variable} ${bangers.variable} antialiased`}>
@@ -27,4 +27,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

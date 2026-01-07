@@ -5,11 +5,7 @@ import { store } from './store/auth';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 
-export default function ClientProviders({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const ClientProviders = ({ children }: { children: React.ReactNode }) => {
   return (
     <Provider store={store}>
       <Navbar />
@@ -17,4 +13,6 @@ export default function ClientProviders({
       <Footer />
     </Provider>
   );
-}
+};
+
+export default ClientProviders;
