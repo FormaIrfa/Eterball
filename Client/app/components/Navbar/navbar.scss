@@ -22,8 +22,8 @@ nav#hors-connexion {
 
   #logo-nav {
     position: absolute;
-    top: 5;
-    left: 50;
+    top: 5px;
+    left: 50px;
     z-index: 10;
   }
 
@@ -31,7 +31,7 @@ nav#hors-connexion {
     ul#menu {
       position: absolute;
       top: 28px;
-      left: 250;
+      left: 250px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -71,7 +71,7 @@ nav#hors-connexion {
   div#connexion {
     width: 20vw;
     position: absolute;
-    right: 30;
+    right: 30px;
 
     div#langue {
       display: flex;
@@ -123,7 +123,7 @@ nav#hors-connexion {
   display: none;
   position: absolute;
   top: 100%;
-  left: -80;
+  left: -80px;
   background-color: rgba(21, 21, 21, 0.9);
   padding: 20px;
   border-radius: 5px;
@@ -184,7 +184,7 @@ nav#hors-connexion {
 
     #logo-nav {
       position: absolute;
-      top: -15;
+      top: -15px;
       left: 0;
     }
 
