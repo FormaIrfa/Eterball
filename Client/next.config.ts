@@ -1,11 +1,7 @@
-import type { NextConfig } from 'next';
-
-const nextConfig: NextConfig = {
+const nextConfig = {
   turbopack: {
-    root: __dirname, // force Client comme racine
+    root: __dirname,
   },
-
-  // ✅ Empêche Vercel de bloquer le build à cause d'ESLint
   eslint: {
     ignoreDuringBuilds: true,
   },
