@@ -15,19 +15,24 @@ const classesRoutes = require('./routes/classes');
 const PORT = process.env.PORT || 5000;
 const app = express();
 const allowedOrigins = [
-  process.env.CLIENT_URL, // ex: https://eterball.vercel.app
+  process.env.CLIENT_URL, // https://eterball.vercel.app
   'http://localhost:3000',
   'http://localhost:5173',
 ].filter(Boolean);
 
-app.use(
-  cors({
-    origin: allowedOrigins,
-    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
-    credentials: true,
-  })
-);
-app.options(/.*/, cors({ origin: allowedOrigins, credentials: true }));
+const corsOptions = {
+  origin: (origin, cb) => {
+    if (!origin) return cb(null, true); // Postman/curl/navigation directe
+    if (allowedOrigins.includes(origin)) return cb(null, true);
+    return cb(new Error(`CORS blocked for origin: ${origin}`));
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
+app.options(/.*/, cors(corsOptions)); // ✅ Express 5 OK
 
 const server = http.createServer(app);
 const io = socketIo(server, {
