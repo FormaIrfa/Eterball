@@ -14,4 +14,5 @@ export type ClassType = {
     technique: number;
     stamina: number;
   };
+  order?: number;
 };
