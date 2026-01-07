@@ -68,7 +68,7 @@ const ShopPage = () => {
                   <li key={it._id} className="item">
                     <div className="card-container">
                       <Image
-                        src={`${API_URL}${it.imageURL}`}
+                        src={`${it.imageURL}`}
                         alt={it.name}
                         width={250}
                         height={250}
