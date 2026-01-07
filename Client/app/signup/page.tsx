@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import './signup.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/auth';
+import { API_ORIGIN } from '@/services/apiOrigin';
 
 const SignUp = () => {
   const [username, setUsername] = useState('');
@@ -53,7 +54,7 @@ const SignUp = () => {
     )}`;
 
     try {
-      const response = await fetch('http://localhost:5000/signup', {
+      const response = await fetch(`${API_ORIGIN}/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
