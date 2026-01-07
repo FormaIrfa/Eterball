@@ -74,9 +74,10 @@ const Login = () => {
         <h2>Connexion</h2>
 
         <label>
-          <span>
-            Nom d&apos;utilisateur <span id="star">*</span> :
-          </span>
+          <div className="label-row">
+            Nom d&apos;utilisateur <span className="star">*</span>
+          </div>
+
           <input
             type="text"
             value={username}
@@ -85,9 +86,9 @@ const Login = () => {
         </label>
 
         <label>
-          <span>
-            Mot de passe <span id="star">*</span> :
-          </span>
+          <div className="label-row">
+            Mot de passe <span className="star">*</span>
+          </div>
           <input
             type="password"
             value={password}

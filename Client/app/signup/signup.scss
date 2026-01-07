@@ -1,74 +1,96 @@
 @use '../../styles/variables' as *;
 
 #signUpPage {
-  height: 80vh;
-  width: 100vw;
+  min-height: 100vh;
+  width: 100%;
+
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* le form part du haut */
   justify-content: center;
-  margin: 220px auto 140px auto; // centrage + marge
+
+  /* évite que ça passe sous la navbar */
+  padding-top: 120px;
+  padding-bottom: 50px;
+
+  margin: 0; /* enlève le gros margin qui crée des effets bizarres */
+
   h2 {
-    margin-bottom: 50px;
     font-size: 2rem;
+    margin: 0;
   }
 
   label {
     display: flex;
-    flex-direction: column; // texte au-dessus de l'input
-    gap: 5px;
-    #star {
-      color: red;
+    flex-direction: column;
+    gap: 6px;
+
+    .label-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      line-height: 1;
     }
+
+    .star {
+      color: red;
+      font-weight: 700;
+    }
+
     input#infosCompte {
       width: 335px;
       border-radius: 25px;
       height: 35px;
       font-family: $Text;
       padding-left: 15px;
+      border-style: none;
+      background-color: rgb(223, 223, 223);
     }
+
     #age {
       display: flex;
       gap: 45px;
     }
+
     #date {
       width: 75px;
       border-radius: 25px;
       height: 35px;
       padding-left: 10px;
+      border-style: none;
+      background-color: rgb(223, 223, 223);
     }
   }
 
   form {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    height: 800px;
-    width: 550px;
-    gap: 20px;
-    border-radius: 8px;
+    gap: 18px;
 
+    /* auto + safe spacing */
+    padding: 40px 0;
+    width: min(500px, 92vw);
+
+    border-radius: 8px;
     background-color: #0b1858;
     box-shadow: 5px 5px 8px -1px rgba(0, 0, 0, 0.286);
   }
+
   button {
-    background-color: $button-color; /* vert moderne */
+    background-color: $button-color;
     color: white;
     padding: 12px 24px;
     border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
     border-radius: 25px;
-    width: 350px;
+    width: min(350px, 100%);
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   button:hover {
-    background-color: $hover-button; /* vert un peu plus foncé */
+    background-color: $hover-button;
     transform: translateY(-2px);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
   }
