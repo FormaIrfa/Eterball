@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import "./login.scss";
@@ -13,23 +13,32 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  // ✅ pour renvoyer l’email si compte non vérifié
-  const [emailForResend, setEmailForResend] = useState("");
+  // ✅ pour renvoi email si non vérifié
   const [needsVerification, setNeedsVerification] = useState(false);
-  const [resendStatus, setResendStatus] = useState<string | null>(null);
+  const [emailForResend, setEmailForResend] = useState("");
+  const [resendMsg, setResendMsg] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
+  const params = useSearchParams();
   const dispatch = useDispatch();
+
   const isConnected = useSelector((store: RootState) => store.auth.isConnected);
 
   useEffect(() => {
     if (isConnected) router.replace("/");
   }, [isConnected, router]);
 
+  // (optionnel) message après vérification email
+  useEffect(() => {
+    if (params.get("verified") === "true") {
+      setResendMsg("Email confirmé ✅ Tu peux te connecter.");
+    }
+  }, [params]);
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setResendStatus(null);
+    setResendMsg(null);
     setNeedsVerification(false);
 
     if (!username || !password) {
@@ -50,7 +59,7 @@ const Login = () => {
       if (response.status === 403) {
         const err = await response.json().catch(() => ({}));
         setNeedsVerification(true);
-        alert(
+        setResendMsg(
           err?.error || "Merci de confirmer ton email avant de te connecter."
         );
         return;
@@ -88,11 +97,11 @@ const Login = () => {
     }
   };
 
-  const handleResend = async () => {
-    setResendStatus(null);
+  const handleResendVerification = async () => {
+    setResendMsg(null);
 
     if (!emailForResend) {
-      alert("Entre ton email pour renvoyer l'email de confirmation.");
+      setResendMsg("Entre ton email pour renvoyer le lien de confirmation.");
       return;
     }
 
@@ -106,15 +115,15 @@ const Login = () => {
       const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
-        setResendStatus(data?.error || "Erreur lors du renvoi.");
+        setResendMsg(data?.error || "Erreur lors du renvoi.");
         return;
       }
 
-      setResendStatus(
+      setResendMsg(
         data?.message || "Si un compte existe, un email a été renvoyé."
       );
     } catch (e) {
-      setResendStatus("Erreur réseau.");
+      setResendMsg("Erreur réseau.");
     }
   };
 
@@ -127,7 +136,6 @@ const Login = () => {
           <div className="label-row">
             Nom de compte <span className="star">*</span>
           </div>
-
           <input
             type="text"
             value={username}
@@ -152,14 +160,9 @@ const Login = () => {
           {loading ? "Connexion…" : "Se connecter"}
         </button>
 
-        {/* ✅ section renvoi email affichée seulement si 403 */}
+        {/*  section qui apparaît seulement si email non vérifié */}
         {needsVerification && (
-          <div style={{ width: "100%", marginTop: 10 }}>
-            <p style={{ margin: "8px 0" }}>
-              Ton compte n’est pas confirmé. Renseigne ton email pour renvoyer
-              le lien :
-            </p>
-
+          <div style={{ width: "100%", marginTop: 12 }}>
             <label>
               <div className="label-row">
                 Email <span className="star">*</span>
@@ -172,14 +175,16 @@ const Login = () => {
               />
             </label>
 
-            <button type="button" onClick={handleResend}>
-              Renvoyer l’email
+            <button type="button" onClick={handleResendVerification}>
+              Renvoyer l’email de confirmation
             </button>
-
-            {resendStatus && (
-              <p style={{ marginTop: 8, opacity: 0.9 }}>{resendStatus}</p>
-            )}
           </div>
+        )}
+
+        {resendMsg && (
+          <p style={{ marginTop: 10, opacity: 0.95, textAlign: "center" }}>
+            {resendMsg}
+          </p>
         )}
 
         <p>

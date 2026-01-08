@@ -37,19 +37,25 @@ router.post("/signup", async (req, res) => {
 
     await newUser.save();
 
-    // ✅ Token email (différent du token de login)
+    if (!process.env.JWT_EMAIL_SECRET) {
+      console.error("JWT_EMAIL_SECRET is missing");
+      return res
+        .status(500)
+        .json({ error: "Config serveur manquante (email secret)" });
+    }
+
+    //  Token email (différent du token de login)
     const emailToken = jwt.sign(
       { userId: newUser._id },
       process.env.JWT_EMAIL_SECRET,
       { expiresIn: "24h" }
     );
 
-    // ⚠️ vérifie bien que ton front a une page /verify
     const verifyUrl = `${
       process.env.CLIENT_URL
     }/verify?token=${encodeURIComponent(emailToken)}`;
 
-    // ✅ envoi via Resend (sans domaine)
+    // envoi via Resend (sans domaine)
     await resend.emails.send({
       from: process.env.EMAIL_FROM || "Eterball <onboarding@resend.dev>",
       to: newUser.email,
