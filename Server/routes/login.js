@@ -1,3 +1,13 @@
+const express = require("express");
+const router = express.Router();
+
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const User = require("../models/User"); // <-- ton model
+const { sendVerificationEmail } = require("../services/emailService");
+
+const SECRET_KEY = process.env.JWT_SECRET;
+
 router.post("/login", async (req, res) => {
   try {
     const username = req.body?.username?.trim();
@@ -9,7 +19,7 @@ router.post("/login", async (req, res) => {
         .json({ error: "Username and password are required" });
     }
 
-    const user = await __User__.findOne({ username });
+    const user = await User.findOne({ username });
 
     if (!user) {
       return res
@@ -17,10 +27,11 @@ router.post("/login", async (req, res) => {
         .json({ error: "Nom d'utilisateur ou mot de passe incorrect" });
     }
 
-    // ✅ vérification email
+    // vérification email
     if (!user.isVerified) {
       return res.status(403).json({
         error: "Merci de confirmer ton email avant de te connecter.",
+        code: "EMAIL_NOT_VERIFIED",
       });
     }
 
@@ -54,8 +65,6 @@ router.post("/login", async (req, res) => {
   }
 });
 
-const { sendVerificationEmail } = require("../services/emailService");
-
 router.post("/resend-verification", async (req, res) => {
   try {
     const email = req.body?.email?.trim()?.toLowerCase();
@@ -64,16 +73,15 @@ router.post("/resend-verification", async (req, res) => {
       return res.status(400).json({ error: "Email requis" });
     }
 
-    const user = await __User__.findOne({ email });
+    const user = await User.findOne({ email });
 
-    // ✅ Réponse neutre même si pas trouvé (sécurité)
+    // Réponse neutre même si pas trouvé (sécurité)
     if (!user) {
       return res.status(200).json({
         message: "Si un compte existe, un email de confirmation a été renvoyé.",
       });
     }
 
-    // Si déjà vérifié, pas besoin de renvoyer
     if (user.isVerified) {
       return res.status(200).json({
         message: "Ton email est déjà vérifié ✅",
@@ -90,3 +98,5 @@ router.post("/resend-verification", async (req, res) => {
     return res.status(500).json({ error: "Erreur serveur" });
   }
 });
+
+module.exports = router;
