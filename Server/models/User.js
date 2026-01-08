@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema(
   {
-    username: { type: String, required: true, trim: true }, // prénom
+    username: { type: String, required: true, trim: true, unique: true }, // prénom
     surname: { type: String, required: true, trim: true }, // nom
     email: {
       type: String,
@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema(
     birthDate: { type: Date, required: true }, // nouvelle propriété
     // solde du joueur
     balance: { type: Number, default: 1000, min: 0 }, // ex : 1000 pièces au départ
-
+    isVerified: { type: Boolean, default: false },
     // inventaire du joueur (IDs d’items)
     inventory: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],
   },

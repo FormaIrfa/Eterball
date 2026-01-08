@@ -47,6 +47,9 @@ const io = socketIo(server, {
 
 const connectedUsers = [];
 
+const verifyEmailRoutes = require('./routes/verifyEmail');
+app.use('/', verifyEmailRoutes);
+
 app.use(express.json());
 app.use(morgan('combined'));
 app.use('/shop', shopRoutes);
