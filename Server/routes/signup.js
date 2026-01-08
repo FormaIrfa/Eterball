@@ -1,8 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken'); // si tu veux générer un token
+const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
 const User = require('../models/User.js');
+
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: Number(process.env.SMTP_PORT || 587),
+  secure: false,
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+});
 
 router.post('/signup', async (req, res) => {
   const { username, surname, email, password, birthDate } = req.body;
@@ -15,49 +26,61 @@ router.post('/signup', async (req, res) => {
   }
 
   try {
-    // Vérifie si email déjà utilisé
     const existing = await User.findOne({ email });
     if (existing) {
       return res.status(400).json({ error: 'Utilisateur déjà existant' });
     }
 
-    // Hash du mot de passe
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Création de l’utilisateur
     const newUser = new User({
-      username, // prénom
-      surname, // nom
+      username,
+      surname,
       email,
       password: hashedPassword,
-      birthDate: new Date(birthDate), // on stocke une vraie Date
+      birthDate: new Date(birthDate),
+      isVerified: false,
     });
 
     await newUser.save();
 
-    // Génération du token JWT direct à l'inscription (optionnel)
-    const token = jwt.sign(
-      { userId: newUser._id, email: newUser.email },
-      process.env.JWT_SECRET,
-      { expiresIn: '2h' }
+    // ✅ Token email (différent du token de login)
+    const emailToken = jwt.sign(
+      { userId: newUser._id },
+      process.env.JWT_EMAIL_SECRET,
+      { expiresIn: '24h' }
     );
 
-    res.status(201).json({
-      message: 'Utilisateur créé avec succès',
-      token,
-      user: {
-        id: newUser._id,
-        username: newUser.username,
-        surname: newUser.surname,
-        email: newUser.email,
-        birthDate: newUser.birthDate,
-        createdAt: newUser.createdAt,
-      },
+    const verifyUrl = `${
+      process.env.CLIENT_URL
+    }/verify?token=${encodeURIComponent(emailToken)}`;
+
+    await transporter.sendMail({
+      from: process.env.EMAIL_FROM,
+      to: newUser.email,
+      subject: 'Confirme ton compte Eterball',
+      html: `
+        <div style="font-family:Arial,sans-serif">
+          <h2>Bienvenue sur Eterball 👋</h2>
+          <p>Merci pour ton inscription. Clique sur le bouton ci-dessous pour confirmer ton email :</p>
+          <p>
+            <a href="${verifyUrl}"
+               style="display:inline-block;padding:10px 16px;border-radius:8px;background:#22c55e;color:#fff;text-decoration:none;">
+              Confirmer mon compte
+            </a>
+          </p>
+          <p>Ce lien expire dans 24h.</p>
+        </div>
+      `,
+    });
+
+    return res.status(201).json({
+      message: 'Utilisateur créé. Un email de confirmation a été envoyé.',
     });
   } catch (err) {
     console.error('Erreur signup:', err);
-    res.status(500).json({ error: 'Erreur serveur' });
+    return res.status(500).json({ error: 'Erreur serveur' });
   }
 });
 
